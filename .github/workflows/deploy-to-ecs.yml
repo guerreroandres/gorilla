@@ -1,12 +1,7 @@
----
-name: "workflow"
-
-'on':
+on:
   push:
     branches:
       - main
-    tags:
-      - "*"
   pull_request:
     branches:
       - main
