@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------
 # Minimal dockerfile from alpine base
 #
-# Instructions:
+# Instructions :
 # =============
 # 1. Create an empty directory and copy this file into it.
 #
