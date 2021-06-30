@@ -12,7 +12,7 @@ resource "aws_ecs_cluster" "my_ecs_cluster" {
 
 resource "aws_ecs_task_definition" "my_ecs_task" {
   family                   = "gorilla-ecs-task"
-  container_definitions    = <<DEFINITION
+  /* container_definitions    = <<DEFINITION
   [
     {
       "name": "gorilla-ecs-task",
@@ -28,7 +28,20 @@ resource "aws_ecs_task_definition" "my_ecs_task" {
       "cpu": 256
     }
   ]
-  DEFINITION
+  DEFINITION */
+  container_definitions = jsonencode([
+    {
+      name      = "gorilla-ecs-task"
+      image     = "${aws_ecr_repository.my_ecr_repo.repository_url}"
+      essential = true
+      portMappings = [
+        {
+          containerPort = 3000
+          hostPort      = 3000
+        }
+      ]
+    }
+  ])
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   memory                   = 512
