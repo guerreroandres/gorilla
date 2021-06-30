@@ -21,11 +21,15 @@ resource "aws_ecs_task_definition" "my_ecs_task" {
       "portMappings": [
         {
           "containerPort": 3000,
-          "hostPort": 3000
+          "hostPort": 3000,
+          "protocol": "tcp"
         }
       ],
       "memory": 512,
-      "cpu": 256
+      "cpu": 256,
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": []
     }
   ]
   DEFINITION
