@@ -27,7 +27,7 @@ RUN apk add --no-cache \
     python3 \
     vim 
 
-RUN adduser --system app --home /app
+RUN addgroup app && adduser --system app --home /app -G app
 USER app
 WORKDIR /app
 COPY --chown=app:app timeoff-management .
