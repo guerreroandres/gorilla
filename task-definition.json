@@ -21,23 +21,7 @@
     "family": "gorilla-ecs-task",
     "executionRoleArn": "arn:aws:iam::629261288378:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 18,
     "volumes": [],
-    "status": "ACTIVE",
-    "requiresAttributes": [
-        {
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
-            "name": "ecs.capability.execution-role-ecr-pull"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        },
-        {
-            "name": "ecs.capability.task-eni"
-        }
-    ],
     "placementConstraints": [],
     "compatibilities": [
         "EC2",
