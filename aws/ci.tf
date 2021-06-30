@@ -23,6 +23,8 @@ resource "aws_iam_user_policy" "publisher" {
         "ecs:DescribeServices",
         "ecs:UpdateService",
         "ecs:RegisterTaskDefinition",
+        "ecr:BatchGetImage",
+        "ecr:BatchCheckLayerAvailability",
         "ecr:CompleteLayerUpload",
         "ecr:DescribeRepositories",
         "ecr:ListImages",
@@ -36,7 +38,12 @@ resource "aws_iam_user_policy" "publisher" {
       ],
       "Effect": "Allow",
       "Resource": "*"
-    }
+    },
+    {
+      "Effect": "Allow",
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*"
+    }    
   ]
 }
 EOF
