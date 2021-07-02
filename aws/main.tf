@@ -125,7 +125,7 @@ resource "aws_security_group" "allow_tls" {
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
-    cidr_blocks      = [aws_vpc.main.cidr_block]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   egress {
@@ -133,7 +133,6 @@ resource "aws_security_group" "allow_tls" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
   }
 
   tags = {
@@ -181,7 +180,6 @@ resource "aws_lb_listener" "listener" {
 data "aws_acm_certificate" "cert" {
   domain = "example.com"
   statuses = [ "ISSUED" ]
-
 }
 
 resource "aws_lb_listener" "listener_https" {
@@ -202,7 +200,7 @@ resource "aws_security_group" "service_security_group" {
     from_port = 0
     to_port   = 0
     protocol  = "-1"
-    security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
+    security_groups = [aws_security_group.load_balancer_security_group.id,aws_security_group.allow_tls.id]
   }
 
   egress {
